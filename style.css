@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+* {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    margin: 0px;
+    font-family: 'Lato', sans-serif;
+    background-image: linear-gradient(0deg, rgb(487, 57, 47)23.8%, rgb(245, 220, 112)85%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 10px 15px 0px rgba(34, 33, 33, 0.7);
+    display: flex;
+    position: relative;
+    padding: 20px 30px;
+    margin: 100px 0px;
+    z-index: 10;
+}
+
+.img-container {
+    position: relative;
+    width: 110px;
+}
+
+
+/* Adding the small circle on the image  */
+
+.img-container::after {
+    content: '';
+    background-color: white;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.img-container img {
+    width: inherit;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    animation: rotate 3s linear infinite;
+    animation-play-state: paused;
+}
+
+
+/* whenever play class will add to the music cntainer the animation will start (by default it is paused there) */
+
+.music-container.play .img-container img {
+    animation-play-state: running;
+}
+
+
+/* Keyframe for rotating animation */
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.action-btn {
+    background-color: white(177, 36, 36);
+    color: rgb(233, 122, 122);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    margin: 0px 20px;
+}
+
+.action-btn-big {
+    color: rgb(233, 23, 23);
+    font-size: 30px;
+}
+
+.action-btn:focus {
+    outline: none;
+}
+
+.music-info {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 15px 15px 0px 0px;
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    /* width: calc(100%-40px); */
+    width: 80%;
+    padding: 10px 10px 10px 150px;
+    opacity: 0;
+    transform: translateY(0%);
+    transition: transform 0.5s ease-in, opacity 0.5s ease-in;
+}
+
+
+/* whenever play class will add to the music cntainer the music info will be shown (by default it will not be there) */
+
+.music-container.play .music-info {
+    opacity: 1;
+    transform: translateY(-100%);
+}
+
+.music-info h4 {
+    margin: 0;
+}
+
+.progress-container {
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0px;
+    height: 4px;
+    width: 100%;
+}
+
+.progress {
+    background-color: #f70944;
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+}
